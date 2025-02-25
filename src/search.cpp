@@ -82,7 +82,8 @@ Score SearchThread::quiescence(Score alpha, Score beta, int ply)
     }
 
     if (ply == MAX_DEPTH)
-    { // don't pass the maximum depth, might crash
+    {
+        // Don't pass the maximum depth, might crash
         return NNUE::NNUENetwork::evaluate(board.get_accumulators(), board.player_color());
     }
 

@@ -55,9 +55,11 @@ Implemented and tested transposition table move ordering (in search.h, search.cp
 
 #### Week 7
 
+Implementing late move reductions (cf. LMR branch), but there is no significant progress so hasn't been merged yet. Will probably continue working on this after the deadline though.
+
 🔄 In Progress
 
-Last update: January 17th, 2025
+Last update: January 14th, 2025
 
 
 
