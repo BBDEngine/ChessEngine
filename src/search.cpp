@@ -240,18 +240,19 @@ template <bool root_node> Score SearchThread::negamax(Score alpha, Score beta, i
 
         // Late Move Reduction
         bool is_killer = (move == killers[ply][0] || move == killers[ply][1]);
-
+        // Since board.gives_check(move) is not available, we simply omit that check.
         bool do_lmr = (!root_node && !in_check && !board.is_capture(move) && !is_killer && !(move == tt_move) &&
-                       depth >= 3 && played > 2 && played > std::max(1, (depth / 3)));
+                       depth >= 3 && played > 3 && played > std::max(1, (depth / 3)));
 
         if (do_lmr)
         {
-            int reduction = (depth >= 7) ? 4 : (depth >= 5) ? 3 : 2;
+            // Use less aggressive reductions: 3 plies at deep depths, 2 at moderate, 1 at shallow.
+            int reduction = (depth >= 7) ? 3 : (depth >= 5) ? 2 : 1;
             int reduced_depth = depth - 1 - reduction;
             reduced_depth = std::max(1, reduced_depth);
 
             score = -negamax<false>(-alpha - 1, -alpha, reduced_depth, ply + 1);
-
+            // If the reduced search indicates a potentially interesting move, re-search at full depth.
             if (score > alpha && score < beta)
             {
                 score = -negamax<false>(-beta, -alpha, depth - 1, ply + 1);
