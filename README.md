@@ -2,7 +2,7 @@
 
 <img src="https://img.shields.io/badge/version-1.0.1-blue" alt="Version 1.0.1">
 <img src="https://img.shields.io/badge/C%2B%2B-20-brightgreen" alt="C++ 20">
-<img src="https://img.shields.io/badge/license-MIT-green" alt="License: MIT">
+
 
 BBD is a high-performance chess engine written in C++20. Don't ask what the name means. 😉
 
